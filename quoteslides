@@ -19,13 +19,14 @@ read_n() {
     STTY=$(stty -g)
     WAIT=$(($1*10))
     stty -icanon min 0 time $WAIT ignbrk -brkint -ixon isig
-    read -s KEY
+    read KEY
     stty "$STTY"
 }
 
 mkdir ~/.cache > /dev/null
 OUT=~/.cache/cowquotes
 
+stty -echo
 echo > "$OUT" &&
     while true; do
         for i in $(cowsay -l | tail +2); do
