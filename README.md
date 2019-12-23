@@ -1,11 +1,12 @@
 # quoteslides
 A slideshow of random quotes in ASCII art.
 
-Quotes are generated with [`fortune`](https://en.wikipedia.org/wiki/Fortune_%28Unix%29) and piped to [`cowsay`](https://github.com/schacon/cowsay) to create ASCII art. Rainbow colors are displayed with ([`lolcat`](https://github.com/busyloop/lolcat). 
+Quotes are generated with [`fortune`](https://en.wikipedia.org/wiki/Fortune_%28Unix%29) and piped to [`cowsay`](https://github.com/schacon/cowsay) to create ASCII art. Rainbow colors are displayed with [`lolcat`](https://github.com/busyloop/lolcat). 
 
 # Installation
-a) clone and run (script should run in almost any shell, including `dash`)
-b) AUR // todo
+Two options:
+1. clone and run (script should run in almost any shell, including `dash`)
+2. AUR // todo
 
 # Usage
 `quoteslides`
