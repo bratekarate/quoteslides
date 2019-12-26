@@ -1,3 +1,5 @@
+Repos URL: https://github.com/f-dj/quoteslides
+
 # quoteslides
 A slideshow of random quotes in ASCII art.
 
