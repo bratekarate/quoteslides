@@ -18,7 +18,6 @@
 read_n() {
     STTY=$(stty -g)
     WAIT=$(($1*10))
-    stty -icanon min 0 time $WAIT ignbrk -brkint -ixon isig
     read KEY
     stty "$STTY"
 }
@@ -31,7 +30,9 @@ echo > "$OUT" &&
     while true; do
         for i in $(cowsay -l | tail +2); do
             printf "\033c"
-            fortune | tee -a "$OUT" | cowsay -f "$i" | sed "$ s/$/\n\n\ncowfile: $i/" | lolcat
+            fortune -o | tee -a "$OUT" | 
+                cowsay -f "$i" | sed "$ s/$/\n\n\ncowfile: $i/" | 
+                lolcat
             echo "----"  >> "$OUT"
             read_n 15
         done
