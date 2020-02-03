@@ -15,4 +15,4 @@ Every 15 seconds a new quote will be displayed with another new cowfile for the 
 
 Skip through quotes by pressing `Enter`.
 
-
+In case you could not finish reading a quote, previous quotes will be cached in `~/.cache/cowquotes` until next command execution.
