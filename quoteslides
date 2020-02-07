@@ -3,19 +3,20 @@
 read_n() {
     STTY=$(stty -g)
     WAIT=$(($1*10))
+    stty -icanon min 0 time $WAIT ignbrk -brkint -ixon isig
     read KEY
     stty "$STTY"
 }
 
-mkdir ~/.cache > /dev/null
-OUT=~/.cache/cowquotes
+mkdir $HOME/.cache > /dev/null
+OUT=$HOME/.cache/cowquotes
 
 stty -echo
 echo > "$OUT" &&
     while true; do
         for i in $(cowsay -l | tail +2); do
             printf "\033c"
-            fortune -o | tee -a "$OUT" | 
+            fortune | tee -a "$OUT" | 
                 cowsay -f "$i" | sed "$ s/$/\n\n\ncowfile: $i/" | 
                 lolcat
             echo "----"  >> "$OUT"
