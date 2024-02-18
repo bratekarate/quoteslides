@@ -1,26 +1,26 @@
 #!/bin/sh
 
 read_n() {
-    STTY=$(stty -g)
-    WAIT=$(($1*10))
-    stty -icanon min 0 time $WAIT ignbrk -brkint -ixon isig
-    read KEY
-    stty "$STTY"
+	stty=$(stty -g)
+	wait=$(($1 * 10))
+	stty -icanon min 0 time $wait ignbrk -brkint -ixon isig
+	read -r _
+	stty "$stty"
 }
 
-mkdir $HOME/.cache > /dev/null
-OUT=$HOME/.cache/cowquotes
+cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/quoteslides
+mkdir -p "$cache_dir"
+outfile=$cache_dir/quotes.txt
 
 stty -echo
-echo > "$OUT" &&
-    while true; do
-        for i in $(cowsay -l | tail +2); do
-            printf "\033c"
-            fortune | tee -a "$OUT" | 
-                cowsay -f "$i" | sed "$ s/$/\n\n\ncowfile: $i/" | 
-                lolcat
-            echo "----"  >> "$OUT"
-            read_n 15
-        done
-    done
-
+echo >"$outfile" &&
+	while true; do
+		for i in $(cowsay -l | tail +2); do
+			printf "\033c"
+			fortune | tee -a "$outfile" |
+				cowsay -f "$i" | sed "$ s/$/\n\n\ncowfile: $i/" |
+				lolcat
+			echo "----" >>"$outfile"
+			read_n 15
+		done
+	done
